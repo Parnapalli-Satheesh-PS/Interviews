@@ -1,0 +1,55 @@
+t1 t2
+1 1
+1 1
+1 null
+1 null
+
+inner - 8
+left - 8
+right - 10
+full - 10
+cross - 16
+
+
+id, name, number
+with CTE as
+(select id, name, number, row_number() over
+(partition by id order by id) as row_number
+from employee)
+delete from employee where ID in ( select ID from employee where row_number>1);
+
+(Schedule interval =  '0 8 * * *')
+cron tab -e
+
+from datetime import datetime
+
+
+define dependency in Airflow
+task 1>> task2>> (task3 and task4)
+task1.set_downstream(task2)
+queue 
+
+
+grep -i | 'missisippi" wc-l
+to find repetitive words
+echo "missisippi" | grep -o -E '(.)|1+'
+
+
+
+
+
+10 tables, 100columns, 10Million records, 80K duplicates
+read data from 
+ReadFromBigQuery while using apache beam
+ReadFromText while data in GCS
+use below transformations in apache beam
+GroupByKey
+Distinct 
+
+
+
+
+
+
+
+
