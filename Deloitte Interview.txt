@@ -21,12 +21,6 @@ Find the Raising temperature from previous day and print out the days where ther
    In 2015-01-02, the temperature was higher than the previous day (10 -> 25).
    In 2015-01-04, the temperature was higher than the previous day (20 -> 30).
 
-
-select id, from(
-(select id, temperature, lag(temperature) over(order by recorddate) as current_temp
-from weather) as previous_raising_temperature
-where current_temperature > previous_raising_temperature;
-
 SELECT id FROM
     (SELECT id, temperature, LAG(temperature) OVER (ORDER BY recordDate) AS previous_temperature
     FROM Temperature) t
@@ -65,15 +59,7 @@ find_consecutive_occurrences(input_string)
 
 
 
-import datetime
-
-default_args(
-schedule interval = '@daily'
-'email_on_failure'= no)
-
-task = PythonOperator(task_id='initail_task)
-
-
+Write DAG with python operator
 
 
 from airflow import DAG
