@@ -13,8 +13,8 @@ cross - 16
 
 id, name, number
 with CTE as
-(select id, name, number, row_number() over
-(partition by id order by id) as row_number
+(select id, name, number,
+row_number() over (partition by id order by id) as row_number
 from employee)
 delete from employee where ID in ( select ID from employee where row_number>1);
 
