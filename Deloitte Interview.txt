@@ -21,9 +21,9 @@ Find the Raising temperature from previous day and print out the days where ther
    In 2015-01-02, the temperature was higher than the previous day (10 -> 25).
    In 2015-01-04, the temperature was higher than the previous day (20 -> 30).
 
-SELECT id FROM
-    (SELECT id, temperature, LAG(temperature) OVER (ORDER BY recordDate) AS previous_temperature
-    FROM Temperature) t
+SELECT id FROM (
+    SELECT id, temperature, LAG(temperature) OVER (ORDER BY recordDate) AS previous_temperature
+    FROM Temperature t) t
 WHERE temperature > previous_temperature;
 
 
