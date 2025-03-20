@@ -1,0 +1,18 @@
+Swap the genders using SELECT statement, as male filled as female and female filled as male
+
+SELECT ID, Name, 
+       CASE 
+           WHEN Gender = 'Male' THEN 'Female'
+           WHEN Gender = 'Female' THEN 'Male'
+           ELSE Gender
+       END AS Swapped_Gender
+FROM employees;
+
+Upadate the gendes, as male filled as female and female filled as male
+
+UPDATE employees
+SET Gender = CASE 
+                 WHEN Gender = 'Male' THEN 'Female'
+                 WHEN Gender = 'Female' THEN 'Male'
+                 ELSE Gender 
+             END;
