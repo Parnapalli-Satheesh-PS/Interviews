@@ -1,0 +1,71 @@
+explain about window functions - row number, rank and dense rank 
+ID Salary row_number dense_rank rank
+1  5000   1          1          1
+2  2000   2          2          2
+3  2000   3          2          2
+4  4000   4          3          4
+
+how to find the duplicates 
+select ID, name, Salary, count(*) from employees
+group by 1,2,3
+having count(*) > 1;
+
+SELECT ID, COUNT(*) FROM employees
+GROUP BY ID
+HAVING COUNT(*) > 1;
+
+how to delete duplicate records
+
+with CTE AS(
+select id, name,
+ROW_NUMBER() over (partition by name order by salary desc) as DuplicateCount
+from employee)
+delete from employee where id IN
+(select id from CTE where DuplicateCount > 1);
+
+
+COALESCE - why we use
+to replace the null values with specific value
+it willl return first non null value
+
+SELECT name, COALESCE(salary, 0) AS salary FROM employees;
+
+
+1 NF - No repeating groups - no repeating values in same row
+2 NF - Split into separate tables,  All non-key columns should depend on the entire primary key.
+3 NF - Move reference data to a new table -  A column should depend only on the primary key, not another column.
+
+View - virtual table based on the result of a SQL query. It does not store data but dynamically retrieves results whenever queried.
+materialized view- it will store the data, Precomputes and stores query results for faster performance.
+
+DROP - it will remove data & delete table structure.
+TRUNCATE - Just clear all data but keep the table structure- faster than delete as it doesn't filter records.
+
+
+Order of execution
+FROM
+JOIN
+WHERE
+GROUP BY
+HAVING
+SELECT
+ORDER BY
+LIMIT/OFFSET
+
+difference b/w dimension & fact tables
+Fact Tables – Store numerical, measurable data (ex: sales, revenue).
+Dimension Tables – Store descriptive details (ex: customers, products).
+
+Dimensions exist independently, but fact tables depend on dimensions.
+
+Airflow Operators
+BashOperator - Runs bash commands
+PythonOperator - Runs a Python function
+BigQueryExecuteQueryOperator - Runs SQL queries in BigQuery
+EmailOperator - Sends email notifications
+
+SCD types
+SCD 0 - No Changes Allowed- Immutable data (ex: Product IDs)
+SCD 1	- Overwrite Data (No History) (ex: phone number update)
+SCD 2	- Maintain Full History using versioning or timestamps	Tracking historical changes (ex: address changes)
+SCD 3	- Limited History (Previous Value Column)(ex: last 2 addresses)
