@@ -1,3 +1,11 @@
+explain the architecture of bigquery
+
+Component	 - Google System	- Purpose
+Storage Layer   	- Colossus	- Distributed columnar storage for efficient data retrieval.
+Compute Layer	    - Borg	    - Manages distributed query execution across multiple nodes.
+Query Engine	    - Dremel   	- Optimized execution engine for fast SQL queries on massive datasets.
+Networking Layer	- Jupiter	  - High-speed networking for fast data transfer between storage & compute nodes.t1 t2
+
 t1 t2
 1 1
 1 1
@@ -11,23 +19,33 @@ full - 10
 cross - 16
 
 
+ETL & ELT
+ETL - suits for traditional BI reporting
+ELT - suits for AI deiven insights - with BQ, snowflake, databricks becoming more standard process for data processing.
+
 id, name, number
+
 with CTE as
 (select id, name, number,
 row_number() over (partition by id order by id) as row_number
 from employee)
-delete from employee where ID in ( select ID from employee where row_number>1);
+delete from employee where ID in ( select ID from CTE where row_number>1);
 
 (Schedule interval =  '0 8 * * *')
 cron tab -e
+0 - Run at minute 0
+8 - Run at 8 AM
+* - Every day of the month
+* - Every month
+* - Every day of the week
 
-from datetime import datetime
+schedule_interval = "*/5 * * * *" - Every 5 minutes
+schedule_interval = "0 * * * *" - Every 1 hour
+schedule_interval = "0 18 * * 6,7" - 6 PM on weekends (Saturday & Sunday)
 
 
 define dependency in Airflow
-task 1>> task2>> (task3 and task4)
-task1.set_downstream(task2)
-queue 
+task1 >> task2 >> (task3 and task4) or task1.set_downstream(task2) - task1 runs before task2
 
 
 grep -i | 'missisippi" wc-l
@@ -36,15 +54,35 @@ echo "missisippi" | grep -o -E '(.)|1+'
 
 
 
-
-
 10 tables, 100columns, 10Million records, 80K duplicates
-read data from 
-ReadFromBigQuery while using apache beam
-ReadFromText while data in GCS
-use below transformations in apache beam
-GroupByKey
-Distinct 
+
+Avoid duplicates before inserting	Use DISTINCT
+Deduplicate after inserting	Use ROW_NUMBER() or GROUP BY
+Avoid duplicates when merging data	Use MERGE
+Streaming data in real-time	Use IGNORE_DUPLICATES
+Need to keep the latest record	Use PARTITION BY unique_id ORDER BY timestamp DESC
+
+
+from airflow import DAG
+from airflow.operators.dummy import DummyOperator
+from datetime import datetime
+
+default_args = {
+    'owner': 'airflow',
+    'depends_on_past': False,
+    'start_date': datetime(2025, 3, 20),
+    'retries': 1,
+}
+
+dag_weekends_6pm = DAG(
+    'dag_weekends_6pm',
+    default_args=default_args,
+    schedule_interval="0 18 * * 6,7",  # Runs at 6 PM UTC on Saturdays & Sundays
+    catchup=False
+)
+
+task = DummyOperator(task_id='start', dag=dag_weekends_6pm)
+
 
 
 
