@@ -1,0 +1,19 @@
+sales
+
+input
+date, product, quantity
+may1, A, 100
+may2, A, 80
+may3 B, 100
+
+output
+date, product, quantity, total_sales
+may1, A, 100, 100
+may2, A, 80, 180
+may3 B, 100, 100
+
+find cumulative sales of different product
+select 
+date, product, quantity, 
+sum(quantity) over (partition by product order by date) as total_sales
+from sales;
