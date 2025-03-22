@@ -1,0 +1,53 @@
+T1
+
+Explain about yourself.
+
+Explain about your day to day activities
+
+Write a dag with any simple operator
+Mention the dependencies between the tasks
+
+What are the different operators are there in Airflow.
+
+Write a query to find second highest salary using select statement &  window function
+
+Optimization techniques in BigQuery
+
+Max how many partitions we can create in BigQuery 
+
+What is partitioning & clustering , on which type of columns we use it.
+
+How you mask PII values in BigQuery. Suppose you are getting data from GCS to BigQuery. Or BigQuery stage table to BigQuery target table.
+
+How do you define dependency between DAG's, not tasks.
+
+Suppose you are getting data for date column with unwanted names, values.
+How do you get DATE alone from that column.
+
+How do you convert Unix timestamp values to normal timestamp values.
+
+
+T2
+There is a existing table, but you need to create a new table with modified schema & column names by dropping existing table in production.
+But you don't have access to production, how you take backup of existing table, then how you create the new updated table in production.
+Explain the complete process.
+
+You have name, ID, MMID, update_timestamp.
+Write the query to find the latest one record using partition by on ID column.
+
+What is difference between materialized view and authorised view
+
+What is the use of temporary tables & stored procedures.
+
+Whether temporary tables or WITH CTE which one will store the data in table.
+
+What are the use case of external tables.
+
+If suppose a DAG failed in one task, how you will trigger that particular task alone. Not entire DAG. Is there any data loss / RCA you need to do before triggering the DAG in production in this scenario.
+
+Suppose data column have values like 
+2025-03-22 00:00:00 UTC keytime
+2025-03_21 00:01:23: ET false..tdjn
+In this case I want date alone. How you will get the date values from this column.
+
+Whenever you get a file in GCS bucket, you need to load the data into BigQuery immediately post checking the file availability, how you will do that.
