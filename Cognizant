@@ -7,7 +7,7 @@ Explain about your day to day activities
 Write a dag with any simple operator
 Mention the dependencies between the tasks
 
-What are the different operators are there in Airflow.
+What are the different operators there in Airflow.
 
 Write a query to find second highest salary using select statement &  window function
 
@@ -21,8 +21,7 @@ How you mask PII values in BigQuery. Suppose you are getting data from GCS to Bi
 
 How do you define dependency between DAG's, not tasks.
 
-Suppose you are getting data for date column with unwanted names, values.
-How do you get DATE alone from that column.
+Suppose you are getting data for date column with unwanted names, values. How do you get DATE alone from that column.
 
 How do you convert Unix timestamp values to normal timestamp values.
 
@@ -41,7 +40,7 @@ What is the use of temporary tables & stored procedures.
 
 Whether temporary tables or WITH CTE which one will store the data in table.
 
-What are the use case of external tables.
+What are the usecase of external tables.
 
 If suppose a DAG failed in one task, how you will trigger that particular task alone. Not entire DAG. Is there any data loss / RCA you need to do before triggering the DAG in production in this scenario.
 
