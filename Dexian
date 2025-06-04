@@ -1,76 +1,45 @@
 i/p 10 11 11 12 12 12 13 13 13 14
-
 o/p 11 12 12 13 13
-
-find out  duplicate values using sql
-
+find out duplicate values using sql
 
 select id, count(*) from table_name
 group by id 
 having count(id) >1;
-
-
+---------------------------------------------------------------------------------------------------------
 Find the Raising temperature from previous day and print out the days where there is raise.
-
    Weather table:
-
    +----+------------+-------------+
-
    | id | recordDate | temperature |
-
    +----+------------+-------------+
-
    | 1  | 2015-01-01 | 10          |
-
    | 2  | 2015-01-02 | 25          |
-
    | 3  | 2015-01-03 | 20          |
-
    | 4  | 2015-01-04 | 30          |
-
    +----+------------+-------------+
 
    Output: 
-
    +----+
-
    | id |
-
    +----+
-
    | 2  |
-
    | 4  |
 
-
-select id, lag(temperature) over (partition by recordDate order by temperature desc) as previous temperature
+select id(
+select id, recordDate, temperature,
+lag(temperature) over (order by recordDate) as previous_temperature
 from Weather
-where temperature > previous temperature;
-
-
-
-
+)
+where temperature > previous_temperature;
+---------------------------------------------------------------------------------------------------------
 Table A(Left)  (ID) -  1, 2, 2, 3, 3, 4, null
-
 Table B(right)  (ID) -  1, 2, 2, 3, 3, null, null
-
- 
-
 	
 JOINS	count
-
 inner	- 9
-
 left	- 11
-
 right	- 11	
-
 full 	- 13
-
-
-
-
-
+---------------------------------------------------------------------------------------------------------
 users;
 user_id  username
 1        John Doe                                                                                            
@@ -79,54 +48,34 @@ user_id  username
 4        Lisa Romero
 
 training_details;
-
 user_training_id  user_id  training_id  training_date
-
 1                 1        1            "2015-08-02"
-
 2                 2        1            "2015-08-03"
-
 3                 3        2            "2015-08-02"
-
 4                 4        2            "2015-08-04"
-
 5                 2        2            "2015-08-03"
-
 6                 1        1            "2015-08-02"
-
 7                 3        2            "2015-08-04"
-
 8                 4        3            "2015-08-03"
-
 9                 1        4            "2015-08-03"
-
 10                3        1            "2015-08-02"
-
 11                4        2            "2015-08-04"
-
 12                3        2            "2015-08-02"
-
 13                1        1            "2015-08-02"
-
 14                4        3            "2015-08-03"
- 
 
 Write a query to to get the list of users who took the a training lesson more than once in the same day
 
-user_id  username      training_id  training_date             count
-
-4        Lisa Romero   2            August, 04 2015 00:00:00  2
-
-4        Lisa Romero   3            August, 03 2015 00:00:00  2
-
-1        John Doe      1            August, 02 2015 00:00:00  3
-
-3        Alice Jones   2            August, 02 2015 00:00:00  2
+user_id  username      training_id  training_date	count
+4        Lisa Romero   2            August, 04 2015    	2
+4        Lisa Romero   3            August, 03 2015	2
+1        John Doe      1            August, 02 2015	3
+3        Alice Jones   2            August, 02 2015	2
 
 
-
-
-select user_id, username, training_id, training_date , count(*) from users u
+select t.user_id, u.username, t.training_id, t.training_date, count(*)
+from users u
 join training_details t
 on t.user_id = u.user_id
-where count(*) >1;
+group by t.user_id, u.username, t.training_id, t.training_date
+having count(*) > 1;
