@@ -21,7 +21,7 @@ cross - 16
 
 ETL & ELT
 ETL - suits for traditional BI reporting
-ELT - suits for AI deiven insights - with BQ, snowflake, databricks becoming more standard process for data processing.
+ELT - suits for AI driven insights - with BQ, snowflake, databricks becoming more standard process for data processing.
 
 id, name, number
 
@@ -82,12 +82,3 @@ dag_weekends_6pm = DAG(
 )
 
 task = DummyOperator(task_id='start', dag=dag_weekends_6pm)
-
-
-
-
-
-
-
-
-
