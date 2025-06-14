@@ -93,17 +93,3 @@ python_task = PythonOperator(
 )
 
 python_task
-
-
-
-
-
-
-
-
-
-
-
-
-
-
