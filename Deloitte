@@ -23,7 +23,7 @@ Find the Raising temperature from previous day and print out the days where ther
 
 SELECT id FROM (
     SELECT id, temperature, LAG(temperature) OVER (ORDER BY recordDate) AS previous_temperature
-    FROM Temperature t) t
+    FROM Weather)
 WHERE temperature > previous_temperature;
 
 
