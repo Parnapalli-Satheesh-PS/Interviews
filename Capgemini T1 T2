@@ -1,0 +1,54 @@
+ID Purchase_date  Amount  App_Name
+P1 2022-03-15     120	  Amazon
+P2 2020-07-04     230	  Amazon
+P1 2023-10-04     250	  Myntra
+P2 2022-12-02     300	  Flipkart
+P3 2024-01-04	  100	  Myntra
+P1 2023-10-04	  350	  Amazon
+
+find the second highest sale amount per app based on the App_Name
+
+with sales as (
+select amount, app_name,
+dense_rank() over(partition by app_name order by amount desc) as total_amount
+from application)
+
+select app_name
+from sales
+where total_amount = 2;
+
+
+
+config
+
+insert
+
+{% if is_incremental %}
+where ndl_update_ts > select max(update_ts)  from {{this}}
+
+max(tgt_ts)
+
+
+'XXXXX'
+
+
+syn_key
+
+where 
+
+so-dev dev/test
+
+
+feat - main
+main - test
+
+test - production
+
+hotfix - production
+
+
+dbt_run >> dbt_test
+
+
+so-dev-policy
+so-prod-
