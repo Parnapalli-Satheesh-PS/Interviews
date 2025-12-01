@@ -1,8 +1,8 @@
 explain the architecture of bigquery
 
 Component            - Google System    - Purpose
-Storage Layer        - Colossus        - Distributed columnar storage for efficient data retrieval.
 Compute Layer        - Borg            - Manages distributed query execution across multiple nodes.
+Storage Layer        - Colossus        - Distributed columnar storage for efficient data retrieval.
 Query Engine        - Dremel            - Optimized execution engine for fast SQL queries on massive datasets.
 Networking Layer    - Jupiter            - High-speed networking for fast data transfer between storage & compute nodes.
 
@@ -82,3 +82,4 @@ dag_weekends_6pm = DAG(
 )
 
 task = DummyOperator(task_id='start', dag=dag_weekends_6pm)
+
