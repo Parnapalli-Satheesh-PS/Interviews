@@ -39,11 +39,9 @@ where
 so-dev dev/test
 
 
-feat - main
-main - test
-
-test - production
-
+feat - relase
+release - test
+test - main
 hotfix - production
 
 
