@@ -1,0 +1,33 @@
+TEMP or CTE which will expire soon CTE expire after session, TEMP stay for 1day 
+BQ architecture
+SCD1
+Standard view and Materialized view. which one stores the data
+Can we create a bucket with same naming in any region
+can we create TEMP stored procedures - no
+have you used any CTE's
+real time use cases of LEAD and LAG
+window functions, RANK, DENSE RANK difference
+second highest salary using RANK function
+employee who is earning more than employer salary
+what are the ways to ingest data in BQ apart from GCS - external tables
+Time travel - we can bring it back with cloud shell
+optimization techniques
+Partitioning and clustering difference
+max how many partitions and clustering we can create 4000 increased to 10000, 6 columns
+can we do partitioning on ID (INTERGER) column - ideally etter to do on TEMPSTAMP columns how can you fetch data without querying the table in BQ UI we can preview
+how can we check table creation date and modified date for a dataset, if we have 100's of tables have you used any DATE function, DATEDIFF, DATE ADD
+we have duplicate records in source, data refreshed in materialized view,
+can we able to use SELECT DISTINCT to avoid duplicates in view - no
+differenece b/w GROUP BY, HAVING
+Have you used QUALIFY
+Can we create primary key in BQ - no
+ID emp ID Name
+1 201 A
+2 210 B
+3 250 C
+4 425 NULL
+5 457 NULL
+select count(*) from emp;
+select count (ID) from emp;
+select count (emp_ID) from emp;
+select count (Name) from emp;
